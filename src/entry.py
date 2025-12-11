@@ -56,11 +56,7 @@ class Default(WorkerEntrypoint):
             
             content = await r2_pic.arrayBuffer()
 
-            headers={
-                "Content-Type": "image/svg+xml"
-            }
-
-            return Response(content, headers=headers)
+            return Response(content, headers={"Content-Type": "image/svg+xml"})
 
     
 
