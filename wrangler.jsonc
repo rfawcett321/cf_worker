@@ -12,7 +12,13 @@
 	],
 	"observability": {
 		"enabled": true
-	}
+	},
+	"r2_buckets": [
+		{
+			"binding": "all-the-flags",
+			"bucket_name": "all-the-flags"
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
