@@ -15,8 +15,9 @@
 	},
 	"r2_buckets": [
 		{
-			"binding": "all-the-flags",
-			"bucket_name": "all-the-flags"
+			"binding": "alltheflags",
+			"bucket_name": "all-the-flags",
+			"remote": true,
 		}
 	]
 	/**

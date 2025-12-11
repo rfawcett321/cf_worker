@@ -29,9 +29,31 @@ class Default(WorkerEntrypoint):
 
             return Response(response_payload)
         
-#        if "/secure/" in path and request_country != "the moon":
-#
-#            return Response("blah")
+        if "/secure/" in path:
+
+            r2_bucket = self.env.alltheflags
+
+            country_path = "gb"
+
+            if len(request_country) == 2:
+                country_path = request_country + ".svg"
+            else:
+                return Response("Object not found", status=404)
+
+            r2_pic = await r2_bucket.get(country_path)
+
+            if r2_pic is None:
+                return Response("Object not found", status=404)
+            
+            content = await r2_pic.arrayBuffer()
+
+            headers={
+                "Content-Type": "image/svg+xml"
+            }
+
+            return Response(content, headers=headers)
+
+    
 
 
 
