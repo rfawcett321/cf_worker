@@ -21,10 +21,22 @@ class Default(WorkerEntrypoint):
 
         if path in ["/", "/secure"]:
 
-            request_time = datetime.datetime.now()
-            response_payload = request_user + " authenticated at " + str(request_time) + " from " + request_country
+            INDEX_PAGE = """
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Hello!</title>
+            </head>
+            <body>
+                <p> {user} authenticated at {time} from <a href="https://tunnel.richardfawcett.co.uk/secure/{country}">{country}</a></p>
+            </body>
+            </html>
+            """
 
-            return Response(response_payload)
+            request_time = datetime.datetime.now()
+            response_payload = INDEX_PAGE.format(user=request_user, time=str(request_time), country=request_country)
+
+            return Response(response_payload, headers={"Content-Type": "text/html"})
         
         if "/secure/" in path:
 
